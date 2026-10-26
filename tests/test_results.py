@@ -47,12 +47,29 @@ def test_e3_to_e6_tables_have_their_rows():
     assert len(R.scale_cells()) == len(C.CALIBRATIONS) * len(X.SCALE_REL) and R.scale_cell(2.0, "ehrlich")["rel"] == 2.0
 
 
+def assert_same_cell(live, stored, rel=1e-9):
+    """Gleiche Struktur, Zeichenketten und ganze Zahlen exakt, Gleitkommazahlen bis auf die letzte Binärstelle: `log`, `cos` und die Summation können je Plattform
+    (Windows, Linux) in der letzten Stelle abweichen; die Messreihe wird auf einem anderen Rechner nachgerechnet."""
+    if isinstance(stored, dict):
+        assert isinstance(live, dict) and set(live) == set(stored)
+        for key in stored:
+            assert_same_cell(live[key], stored[key], rel)
+    elif isinstance(stored, (list, tuple)):
+        assert isinstance(live, (list, tuple)) and len(live) == len(stored)
+        for a, b in zip(live, stored):
+            assert_same_cell(a, b, rel)
+    elif isinstance(stored, float):
+        assert live == pytest.approx(stored, rel=rel, abs=1e-15)
+    else:
+        assert live == stored
+
+
 def test_stored_cells_are_reproduced_by_the_live_functions():
     """Das Nachmessen in der App liefert dieselben Zahlen wie die vorgerechnete Zelle (gleiche Seeds, gleiche Läufe)."""
     row = R.uniform_row(10)
-    assert X.uniform_cell(10, row["runs_per_seed"]) == row
-    assert X.power_cell(0.45, 30, 4000) == R.power_row(0.45, 30)
-    assert X.supplier_summary(3.0, 0.15) == R.supplier_example()
+    assert_same_cell(X.uniform_cell(10, row["runs_per_seed"]), row)
+    assert_same_cell(X.power_cell(0.45, 30, 4000), R.power_row(0.45, 30))
+    assert_same_cell(X.supplier_summary(3.0, 0.15), R.supplier_example())
     live = X.forecast_cell(1.0, "ehrlich", X.CASES, seeds=X.SEEDS[:1])
     stored = R.forecast_cell(1.0, "ehrlich")
     assert live["methods"]["Mischung"]["crps"]["per_seed"][0] == pytest.approx(stored["methods"]["Mischung"]["crps"]["per_seed"][0], rel=1e-12)

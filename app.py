@@ -170,7 +170,7 @@ st.caption(f"Arithmetisches Mittel derselben Nacht je Tagesbeginn: {cut_text} (S
            f"Die Fréchet-Funktion hat {a.n_minima} lokale{'s Minimum' if a.n_minima == 1 else ' Minima'}"
            + (f"; {a.median_ties} Datenpunkte sind als zirkulärer Median gleich gut (Gleichstand: der kleinere Winkel gilt)." if a.median_ties > 1 else "."))
 if a.oracle_coverage is not None:
-    st.caption(f"Ein Fenster um die wahre Mitte ({V.hhmm(a.night.truth)} Uhr, ± {_fmt(settings.window, 2)} h) fängt {_fmt(100.0 * a.oracle_coverage, 1)} % der Ankünfte: mehr kann keine Mitte erreichen.")
+    st.caption(f"Ein Fenster um die wahre Mitte ({V.hhmm(a.night.truth)} Uhr, ± {_fmt(settings.window, 2)} h) fängt {_fmt(100.0 * a.oracle_coverage, 1)} % der Ankünfte. Eine aus der Stichprobe berechnete Mitte kann mehr fangen, weil sie sich der Stichprobe anpasst.")
 
 # --- Teil B -------------------------------------------------------------------------------------------------------------------------------
 

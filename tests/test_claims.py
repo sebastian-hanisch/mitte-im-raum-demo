@@ -191,6 +191,8 @@ def test_e5_overconfident_reports():
     over = lambda s: R.forecast_cell(s, "überzuversichtlich")
     diff = {s: (de(over(s)["diffs"]["mix_minus_vin"]["crps_diff"]["mean"], 4), de(over(s)["diffs"]["mix_minus_vin"]["crps_diff"]["std"], 4)) for s in (1.0, 2.0, 4.0)}
     assert diff == {1.0: ("0,0039", "0,0029"), 2.0: ("0,0080", "0,0094"), 4.0: ("-0,0167", "0,0228")}
+    assert all(abs(over(s)["diffs"]["mix_minus_vin"]["crps_diff"]["mean"]) < 0.01 * over(s)["methods"]["Quantilmittel"]["crps"]["mean"] for s in (1.0, 2.0, 4.0))      # „weniger als 1 % des CRPS“
+    assert [over(s)["diffs"]["mix_minus_vin"]["crps_diff"]["mean"] > 0 for s in (1.0, 2.0, 4.0)] == [True, True, False]                                                   # Vorzeichenwechsel
     for s in X.SE_VALUES:                                                                          # nirgends mehr als eine Streuung zwischen den Seeds vom Nullpunkt entfernt, außer s_e = 0,5
         d = over(s)["diffs"]["mix_minus_vin"]["crps_diff"]
         assert abs(d["mean"]) < 0.01 or abs(d["mean"]) <= d["std"]
@@ -245,6 +247,7 @@ def test_crps_raster_error_for_100_levels():
         closed = y * (2 * float(D.norm_cdf(y)) - 1) + 2 * phi(y) - 1 / math.sqrt(math.pi)
         errors.append(D.crps_from_quantiles(z[None, :], np.array([y]), p)[0] - closed)
     assert abs(np.mean(errors)) < 1e-4 and np.abs(errors).max() < 3e-3
+    assert 5e-5 < np.abs(errors).mean() < 2e-4                                                      # „mittlerer Fehlerbetrag etwa 0,0001“
 
 
 def test_numbers_named_in_the_text_of_the_readme():

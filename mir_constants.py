@@ -61,9 +61,9 @@ PRESETS = {
 }
 PRESET_HELP = {
     "Nachtschicht am Tor (Standard)": "Teil A: Ankünfte um 23:30 Uhr mit einer Streuung von 1 Stunde, 60 Ankünfte. Die Uhrzeit läuft über Mitternacht: Das arithmetische Mittel (Tag ab 0 Uhr) landet am Nachmittag, das Kreismittel in der Nacht.",
-    "Tagschicht, kein Sprung": "Teil A: Ankünfte um 14 Uhr, weit weg von Mitternacht. Hier fallen die Mitten praktisch zusammen: Die Wahl der Mitte ist nur dort ein Problem, wo die Daten den Schnittpunkt des Tages treffen.",
+    "Tagschicht, kein Sprung": "Teil A: Ankünfte um 14 Uhr, weit weg von Mitternacht. Hier fallen die Mitten praktisch zusammen: Zwischen arithmetischem Mittel und Kreismittel entscheidet nur der Schnittpunkt des Tages, und der liegt hier weit von den Daten.",
     "Zwei Gipfel Früh/Spät": "Teil A: eine Hälfte der Ankünfte um 6 Uhr, die andere um 18 Uhr. Die resultierende Länge R liegt weit unter der Schwelle; die meisten Mitten sitzen im Leeren zwischen den Häufungen, keine beschreibt die Daten.",
-    "Ein Lkw mehr (Gegenpunkte)": "Teil A: 41 Ankünfte in zwei Häufungen gegenüber (0 und 12 Uhr), 20 gegen 21. Wechselt ein einziger Lkw die Seite (Anteil 49 statt 51 Prozent), springen in diesem Beispiel vier der fünf Mitten um mehr als 6 Stunden; wie weit sie im Mittel springen, zeigt E2.",
+    "Ein Lkw mehr (Gegenpunkte)": "Teil A: 41 Ankünfte in zwei Häufungen gegenüber (0 und 12 Uhr), 20 gegen 21. Bei 49 statt 51 Prozent (ein Lkw wechselt die Seite, die Nacht ist aber eine andere Ziehung) springen in diesem Beispiel vier der fünf Mitten um mehr als 6 Stunden; der gepaarte Vergleich am selben Datensatz und wie weit die Mitten im Mittel springen, steht in E2.",
     "Zwei Lieferanten": "Teil B: Lieferant B liefert in der dreifachen Zeit von A (Median 30 gegen 10 Tage), beide streuen im Logarithmus mit 0,15. Mischung und Quantilmittel haben dasselbe Mittel, aber ganz andere Streuung.",
     "Prognose zu zweit": "Teil B: zwei Prognosen, jede liegt mit Streuung 2 neben dem wahren Erwartungswert, meldet aber nur die Streuung 1 der Nachfrage (überzuversichtlich). Messung mit 200 Fällen auf Knopfdruck.",
     "Prognose ehrlich gemeldet": "Teil B: dieselben zwei Prognosen, aber jede meldet ihren eigenen Fehler mit (Streuung 2,24). In der vorgerechneten Reihe von Experiment E5 ist dann das Quantilmittel im CRPS besser.",

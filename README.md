@@ -17,7 +17,7 @@ Rangfolgen als Mitte stehen in `rangaggregation-demo`, Graphen in [centrality-de
 ## Warum dieses Problem
 
 Zwischen 23 Uhr und 1 Uhr liegen 2 Stunden, nicht 22. Das arithmetische Mittel der Uhrzeiten 23, 23,5, 0,5 und 1 ist **12,00 Uhr**, das Kreismittel **0 Uhr**. Eine Nachtschicht, die um 23:30 Uhr ihre Mitte hat, bekommt mit dem arithmetischen Mittel (Tag ab 0 Uhr) eine „typische Ankunft“ am Nachmittag.
-Der Kreis-Hook allein ist ein Zweizeiler (`arctan2`). **Was die Messreihen darüber hinaus tragen:** wann die Mitte auf dem Kreis nur noch Zufall ist (Schwelle für R), was die Wahl des Mittels im Betrieb kostet (Torzeit-Fenster, Bestellpunkt), und dass eine Mitte bei zwei Häufungen zwar definiert, aber sinnlos ist.
+Der Kreis-Hook allein ist ein Zweizeiler (`arctan2`). **Was die Messreihen darüber hinaus zeigen:** wann die Mitte auf dem Kreis nur noch Zufall ist (Schwelle für R), was die Wahl des Mittels im Betrieb kostet (Torzeit-Fenster, Bestellpunkt), und dass eine Mitte bei zwei Häufungen zwar definiert, aber sinnlos ist.
 
 **Kernfrage:** *Wann ist „die Mitte“ in einem anderen Raum als der Zahlengeraden gut definiert, wann ist sie definiert, aber sinnlos, und was kostet es im Betrieb, wenn man trotzdem das gewohnte Mittel nimmt?*
 
@@ -99,7 +99,7 @@ Alle Zahlen stehen in `tests/test_claims.py` und werden dort aus `data/mir_resul
 * **PLAN E7 bestätigt** (Mittel 20,23 Tage, Streuung 10,67 gegen 3,05, 5,8 % gegen 90,4 %). Neu ist die Folge für den Bestellpunkt und das Raster. Die **Mischung** ist die richtige Beschreibung zufälliger Zuordnung; das Quantilmittel hat seinen Ort bei der **Kombination von Prognosen**, nicht bei Lieferanten.
 * **Die Prognosekombination hat keinen Sieger.** Der CRPS unterscheidet Mischung und Quantilmittel bei überzuversichtlich gemeldeten Prognosen nur wenig (kleine Differenzen mit wechselndem Vorzeichen; bei sₑ = 2 und 4 liegt sie innerhalb der Streuung zwischen den Seeds, bei sₑ = 1 knapp darüber), bei ehrlich gemeldeten ist das Quantilmittel besser. Die Demo gibt keine Empfehlung „Quantile mitteln“ aus.
 * **H8 gilt nur teilweise** (siehe Hypothesen).
-* **Der Kreis-Hook allein ist ein Zweizeiler.** Tragfähig sind die gemessenen Schwellen, die Torzeit-Folgen (Fehler 52 gegen 6 Minuten, Nachtschicht 444 Minuten, Schnittpunkt-Abhängigkeit 58 %) und der Bestellpunkt (57,2 % statt 95 %); der Rest ist geometrisch naheliegend (zwei Gegenpunkte haben keine Mitte).
+* **Der Kreis-Hook allein ist ein Zweizeiler.** Belastbar sind die gemessenen Schwellen, die Torzeit-Folgen (Fehler 52 gegen 6 Minuten, Nachtschicht 444 Minuten, Schnittpunkt-Abhängigkeit 58 %) und der Bestellpunkt (57,2 % statt 95 %); der Rest ist geometrisch naheliegend (zwei Gegenpunkte haben keine Mitte).
 
 ## Ehrliche Grenzen
 
